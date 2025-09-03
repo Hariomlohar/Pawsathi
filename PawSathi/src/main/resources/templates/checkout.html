@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+    <title>Checkout - PawSathi</title>
+</head>
+<body>
+<div id="content">
+    <div class="container my-5">
+        <h2 class="text-center fw-bold mb-5">Checkout</h2>
+
+        <div class="row">
+            <!-- Billing & Shipping Form -->
+            <div class="col-lg-7 mb-4">
+                <div class="card shadow-sm border-0 rounded">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4">Billing Details</h5>
+                        <form th:action="@{/checkout/placeOrder}" method="post">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" name="firstName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" name="lastName" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control" name="phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Address</label>
+                                <textarea class="form-control" name="address" rows="3" required></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" name="city" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Zip Code</label>
+                                    <input type="text" class="form-control" name="zip" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 py-2 mt-3">Place Order</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-lg-5">
+                <div class="card shadow-sm border-0 rounded">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4">Order Summary</h5>
+                        <div th:if="${#lists.isEmpty(cartItems)}">
+                            <p class="text-muted text-center">Your cart is empty.</p>
+                        </div>
+                        <div th:each="item : ${cartItems}" class="d-flex justify-content-between mb-3">
+                            <div>
+                                <h6 class="mb-1" th:text="${item.product.name}">Product Name</h6>
+                                <small class="text-muted">Qty: <span th:text="${item.quantity}"></span></small>
+                            </div>
+                            <p class="fw-bold">₹<span th:text="${item.totalPrice}"></span></p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <strong>₹<span th:text="${subtotal}"></span></strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping</span>
+                            <strong>₹<span th:text="${shipping}"></span></strong>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between fs-5 fw-bold">
+                            <span>Total</span>
+                            <strong>₹<span th:text="${total}"></span></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script></script>
+</body>
+</html>

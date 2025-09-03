@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title}, ~{::script})}">
+
+<head>
+    <title>Product List Page</title>
+</head>
+
+<body>
+    <div id="content">
+        <div class="container py-5 mt-5">
+            <h2 class="text-center mb-4">All Added Products</h2>
+
+            <!-- Product Rows -->
+            <div class="d-flex align-items-center justify-content-between border p-3 rounded mb-3 shadow-sm bg-light"
+                th:each="prod : ${products}">
+
+                <div class="d-flex align-items-center gap-3">
+                    <img th:src="@{'/uploads/product_img/' + ${prod.imageName}}" class="rounded-circle" width="70"
+                        height="70" th:alt="${prod.name}">
+                    <div>
+                        <h5 class="mb-1" th:text="${prod.name}"></h5>
+                        <p class="mb-0 text-muted">₹<span th:text="${prod.price}"></span></p>
+                        <p class="mb-0 text-muted">Category: <span th:text="${prod.category.name}"></span></p>
+                    </div>
+                </div>
+                <div>
+                    <a th:href="@{'/admin/editProduct/' + ${prod.id}}" class="btn btn-primary btn-sm me-2">Edit</a>
+                    <a th:href="@{'/admin/deleteProduct/' + ${prod.id}}"
+                        onclick="return confirm('Are you sure you want to delete this product?');"
+                        class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>

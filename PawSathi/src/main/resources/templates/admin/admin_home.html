@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title}, ~{::script})}">
+
+<head>
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <div id="content">
+         <div class="container py-5 mt-5">
+        <h2 class="text-center mb-4">Admin Dashboard</h2>
+
+        <div class="row g-4">
+
+            <!-- Add Product Card -->
+            <div class="col-12 col-md-4">
+                <div class="card dashboard-card text-center p-4">
+                    <i class="fa-solid fa-plus "></i>
+                    <h5>Add Product</h5>
+                    <a href="add_product" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <!-- Category Card -->
+            <div class="col-12 col-md-4">
+                <div class="card dashboard-card text-center p-4">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h5>Category</h5>
+                    <a href="add_category" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <!-- View Product Card -->
+            <div class="col-12 col-md-4">
+                <div class="card dashboard-card text-center p-4">
+                    <i class="fa-solid fa-eye"></i>
+                    <h5>View Product</h5>
+                    <a href="products" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <!-- Orders Card -->
+            <div class="col-12 col-md-4">
+                <div class="card dashboard-card text-center p-4">
+                    <i class="fa-solid fa-truck"></i>
+                    <h5>Orders</h5>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <!-- Users Card -->
+            <div class="col-12 col-md-4">
+                <div class="card dashboard-card text-center p-4">
+                    <i class="fa-solid fa-user"></i>
+                    <h5>Users</h5>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <!-- Add Admin Card -->
+            <div class="col-12 col-md-4">
+                <div class="card dashboard-card text-center p-4">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <h5>Add Admin</h5>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script>
+
+    </script>
+</body>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title}, ~{::script})}">
+
+<head>
+    <title>Product Page</title>
+    <link rel="stylesheet" href="/css/products.css">
+</head>
+
+<body>
+    <div id="content" class="container py-4 mt-5">
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <form method="get" th:action="@{/products}">
+                    <input type="text" name="search" class="form-control search-bar" placeholder="Search products..."
+                        th:value="${search}">
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Category Section -->
+            <div class="col-12 col-md-3 category-section">
+                <h5>Categories</h5>
+                <div class="list-group">
+                    <a th:each="cat : ${categories}" th:href="@{'/products?categoryId=' + ${cat.id}}"
+                        th:text="${cat.name}" th:classappend="${cat.id == selectedCategoryId} ? 'active' : ''"
+                        class="category-item list-group-item">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product List -->
+            <div class="col-12 col-md-9">
+                <h5 class="mb-3">Products</h5>
+                <div class="row g-4">
+                    <div class="container mt-3">
+                        <div th:if="${succMsg}" class="alert alert-success text-center">
+                            <span th:text="${succMsg}"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-lg-3" th:each="product : ${products}">
+                        <a th:href="@{'/view_product/' + ${product.id}}" class="product-card-link">
+                            <div class="card product-card h-100">
+                                <div class="product-image-wrapper">
+                                    <img th:src="@{'/uploads/product_img/' + ${product.imageName}}"
+                                        th:alt="${product.name}">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 th:text="${product.name}"></h6>
+                                    <p class="price">₹<span th:text="${product.price}"></span></p>
+                                    <a th:href="@{'/cart/add/' + ${product.id}}"
+                                        class="btn btn-outline-primary w-100 mt-2">
+                                        Add to Cart
+                                    </a>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- No Products Message -->
+                <div class="text-center mt-4" th:if="${#lists.isEmpty(products)}">
+                    <p class="text-muted">No products available.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>

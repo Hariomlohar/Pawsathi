@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title}, ~{::script})}">
+<head>
+    <title th:text="${product.name} + ' - Product Details'">Product Details</title>
+</head>
+<body>
+<div id="content">
+    <div class="container py-5 mt-5">
+        <div class="row align-items-start">
+            <!-- Product Image -->
+            <div class="col-md-6 mb-4 mt-5">
+                <img th:src="@{'/uploads/product_img/' + ${product.imageName}}" th:alt="${product.name}" class="img-fluid product-detail-image">
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-md-6">
+                <h2 class="text-center mb-3 product-title" th:text="${product.name}"></h2>
+                <p>
+                    <strong>Price:</strong> ₹<span th:text="${product.price}"></span>
+                    <span class="discount-text ms-3" th:if="${product.offer > 0}" th:text="${product.offer + '% OFF'}"></span>
+                </p>
+                <p><strong>Suitable Age:</strong> <span th:text="${product.ageSuitability}"></span></p>
+                <p><strong>Category:</strong> <span th:text="${product.category.name}"></span></p>
+                <p>
+                    <strong>Availability:</strong>
+                    <span class="badge" th:classappend="${product.stock > 0} ? 'bg-success' : 'bg-warning text-dark'" 
+                          th:text="${product.stock > 0 ? 'Available' : 'Out of Stock'}"></span>
+                </p>
+
+                <p><strong>Description:</strong> <span th:text="${product.description}"></span></p>
+
+                <!-- Specifications -->
+                <h5>Specifications:</h5>
+                <table class="table table-bordered w-75">
+                    <tr><th>Material</th><td th:text="${product.material}"></td></tr>
+                    <tr><th>Length</th><td th:text="${product.length}"></td></tr>
+                    <tr><th>Weight</th><td th:text="${product.weight}"></td></tr>
+                    <tr><th>Color</th><td th:text="${product.color}"></td></tr>
+                </table>
+
+                <!-- CTA Buttons -->
+                <div class="d-flex gap-3 mt-4">
+                    <!-- <button class="btn custom-btn-primary">Add to Cart</button> -->
+                     <a th:href="@{'/cart/add/' + ${product.id}}"
+                                        class="btn custom-btn-primary">
+                                        Add to Cart
+                                    </a>
+                    <a class="btn custom-btn-secondary" th:href="@{'/cart/add/' + 'cart/add_cart'}">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    
+</script>
+</body>
+</html>

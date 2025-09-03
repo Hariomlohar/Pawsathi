@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title}, ~{::script})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawSathi - Premium Pet Store</title>
+
+</head>
+
+<body>
+    <div id="content">
+        <!-- HERO BANNER -->
+        <!-- HERO SLIDER -->
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <img src="/images/slider1.webp" class="d-block w-100 hero-img" alt="Banner 1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="display-4 fw-bold">Welcome to PawSathi</h1>
+                        <p class="lead">Your one-stop shop for all pet essentials</p>
+                        <a href="/shop" class="btn btn-primary btn-lg mt-2">Shop Now</a>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <img src="/images/slider2.jpg" class="d-block w-100 hero-img" alt="Banner 2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="display-4 fw-bold">Best Care for Your Pets</h1>
+                        <p class="lead">Explore our premium pet products & accessories</p>
+                        <a href="/categories" class="btn btn-light btn-lg mt-2">Browse Categories</a>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <img src="/images/animals.jpg" class="d-block w-100 hero-img" alt="Banner 3">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="display-4 fw-bold">Exclusive Deals</h1>
+                        <p class="lead">Save more with our latest offers</p>
+                        <a href="/offers" class="btn btn-primary btn-lg mt-2">Grab Deals</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
+        <!-- SHOP BY CATEGORY -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title text-center mb-4">Shop by Category</h2>
+                <div class="category-slider">
+                    <div class="category-item" th:each="cat : ${categorys}">
+                        <a th:href="@{'/products?categoryId=' + ${cat.id}}" class="text-decoration-none">
+                            <div class="category-image-wrapper">
+                                <img th:src="@{'/images/category_img/' + ${cat.imageName}}" alt="[[${cat.name}]]">
+                            </div>
+                            <h6 class="category-name text-center mt-2">[[${cat.name}]]</h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- HOT DEALS SECTION -->
+        <section class="hot-deals-section text-white py-4">
+            <div class="container">
+                <div class="text-center mb-3">
+                    <h2 class="section-title text-uppercase fw-bold">🔥 Hot Deals This Week</h2>
+                    <p class="lead">Don’t miss out on our exclusive weekly offers!</p>
+                </div>
+                <div class="scroll-container">
+                    <!-- Deal Card 1 -->
+                    <div class="card hot-deal-card" th:each="product : ${products}">
+                        <a th:href="@{'/view_product/' + ${product.id}}" class="product-card-link">
+                        <div class="position-relative">
+                            <img th:src="@{'/uploads/product_img/' + ${product.imageName}}"
+                                        th:alt="${product.name}">
+                                         <p class="badge bg-danger position-absolute top-0 start-0 m-2 px-3 py-2">-<span th:text="${product.offer}"></span>%</p>
+                            <!-- <span class="badge bg-danger position-absolute top-0 start-0 m-2 px-3 py-2" th:text="${product.offer}"><p>% OFF</p></span> -->
+                            
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title text-dark" th:text="${product.name}" >Premium Dog Food</h4>
+                            <p class="fw-bold text-dark">₹<span th:text="${product.price}"></span></p>
+                           <button class="btn btn-primary btn-sm">Buy Now</button>
+                        </div>
+                        </a>
+                    </div>
+                    <!-- Deal Card 2 -->
+                   
+                    <!-- Add more cards as needed -->
+                </div>
+                <!-- Countdown -->
+                <div class="text-center mt-3">
+                    <p class="mb-1">Hurry up! Offer ends in:</p>
+                    <h4 id="deal-timer" class="fw-bold"></h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PRODUCTS -->
+        <section class="featured-products-section py-4 bg-light">
+            <div class="container">
+                <h2 class="section-title text-center mb-3">Featured Products</h2>
+                <div class="scroll-container">
+                    <div class="card product-card">
+                        <img src="images/cat.png" alt="Dog Collar">
+                        <div class="card-body text-center">
+                            <h5>Dog Collar</h5>
+                            <p>$15.99</p>
+                            <button class="btn btn-primary btn-sm">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="card product-card">
+                        <img src="images/slider2.jpg" alt="Cat Scratcher">
+                        <div class="card-body text-center">
+                            <h5>Cat Scratcher</h5>
+                            <p>$25.50</p>
+                            <button class="btn btn-primary btn-sm">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="card product-card">
+                        <img src="images/birds.png" alt="Bird Feeder">
+                        <div class="card-body text-center">
+                            <h5>Bird Feeder</h5>
+                            <p>$12.00</p>
+                            <button class="btn btn-primary btn-sm">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="card product-card">
+                        <img src="images/fish.jpg" alt="Pet Bed">
+                        <div class="card-body text-center">
+                            <h5>Pet Bed</h5>
+                            <p>$45.00</p>
+                            <button class="btn btn-primary btn-sm">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="py-5 bg-light">
+            <div class="container text-center">
+                <h2 class="section-title mb-4">What Our Customers Say</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="testimonial p-4 shadow-sm">"Amazing products and fast delivery!"<br><strong>- John
+                                D.</strong></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="testimonial p-4 shadow-sm">"Great customer service and quality."<br><strong>- Sarah
+                                W.</strong></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="testimonial p-4 shadow-sm">"My pets love the new toys!"<br><strong>- Alex
+                                P.</strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter py-5 text-center text-white">
+            <div class="container">
+                <h2>Stay Updated!</h2>
+                <p>Subscribe for exclusive deals & pet care tips</p>
+                <form class="row justify-content-center">
+                    <div class="col-md-4"><input type="email" class="form-control mb-2" placeholder="Enter your email">
+                    </div>
+                    <div class="col-md-2"><button class="btn btn-light w-100">Subscribe</button></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Floating Chat Button -->
+        <a href="#" id="chatToggle" class="chat-btn">💬</a>
+
+        <!-- Hidden Chat Popup -->
+        <div id="chatPopup" class="chat-popup shadow">
+            <div class="chat-header bg-primary text-white d-flex justify-content-between align-items-center p-2">
+                <h6 class="mb-0">Live Chat Support</h6>
+                <button id="closeChat" class="btn btn-sm btn-light">X</button>
+            </div>
+            <div class="chat-body p-3" id="chatBody">
+                <div class="message support-message">
+                    <p>Hello! How can we assist you today?</p>
+                    <span class="time">10:00 AM</span>
+                </div>
+            </div>
+            <div class="chat-footer p-2 bg-light">
+                <form id="chatForm" class="d-flex">
+                    <input type="text" id="chatInput" class="form-control me-2" placeholder="Type your message...">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer class="bg-dark text-white py-5">
+            <div class="container text-center">
+                <p>© 2025 PawSathi. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Chat Script -->
+    <script>
+        const chatToggle = document.getElementById('chatToggle');
+        const chatPopup = document.getElementById('chatPopup');
+        const closeChat = document.getElementById('closeChat');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const chatBody = document.getElementById('chatBody');
+
+        // Open chat
+        chatToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            chatPopup.style.display = 'flex';
+        });
+
+        // Close chat
+        closeChat.addEventListener('click', function () {
+            chatPopup.style.display = 'none';
+        });
+
+        // Send message
+        chatForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (message) {
+                const msgDiv = document.createElement('div');
+                msgDiv.classList.add('message', 'user-message');
+                msgDiv.innerHTML = `<p>${message}</p><span class="time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>`;
+                chatBody.appendChild(msgDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+                chatInput.value = '';
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

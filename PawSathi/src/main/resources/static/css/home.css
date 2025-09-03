@@ -1,0 +1,319 @@
+body { 
+    font-family: 'Arial', sans-serif; 
+    background: #f8f9fa; 
+}
+
+/* Hero Slider */
+.hero-img {
+    
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+}
+@media (max-width: 768px) {
+    .hero-img {
+        height: 300px; /* Reduce height for mobile */
+    }
+}
+.carousel-caption {
+    bottom: 20%;
+    text-shadow: 0px 4px 10px rgba(0,0,0,0.6);
+}
+.carousel-caption h1 {
+    font-size: 3rem;
+}
+.carousel-caption p {
+    font-size: 1.25rem;
+}
+@media (max-width: 768px) {
+    .carousel-caption h1 { font-size: 1.8rem; }
+    .carousel-caption p { font-size: 1rem; }
+}
+
+/* Horizontal scroll for both sections */
+/* Section spacing */
+.hot-deals-section, .featured-products-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Horizontal scroll for Hot Deals & Featured */
+.scroll-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+}
+.scroll-container::-webkit-scrollbar { display: none; }
+.scroll-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Cards */
+.scroll-container .card {
+    flex: 0 0 auto;
+    width: 220px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+.scroll-container .card:hover { transform: scale(1.03); }
+
+/* Images */
+.scroll-container .card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .scroll-container .card {
+        width: 180px;
+    }
+    .scroll-container .card img {
+        height: 160px;
+    }
+}
+
+/* Countdown text */
+#deal-timer {
+    color: #fff;
+}
+
+
+/* Products */
+.product-card { 
+    border: none; 
+    transition: transform 0.3s, box-shadow 0.3s; 
+}
+.product-card:hover { 
+    transform: translateY(-8px); 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+}
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+@media (max-width: 768px) {
+    .product-card img {
+        height: 180px;
+    }
+}
+
+/* Testimonials */
+.testimonial { 
+    background: #fff; 
+    border-radius: 10px; 
+}
+
+/* Newsletter */
+.newsletter { 
+    background: #007bff; 
+}
+
+/* Live Chat */
+.chat-btn { 
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    background: #007bff; 
+    color: #fff; 
+    padding: 15px; 
+    border-radius: 50%; 
+    font-size: 20px; 
+    text-decoration: none; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+}
+.chat-btn:hover { 
+    background: #0056b3; 
+}
+
+/* Horizontal scroll container */
+.category-scroll {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+}
+.category-scroll::-webkit-scrollbar {
+    display: none;
+}
+.category-scroll {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;     
+}
+
+/* Category cards */
+/* Category Slider */
+.category-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+}
+.category-slider::-webkit-scrollbar {
+    display: none;
+}
+.category-slider {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Category Item */
+.category-item {
+    flex: 0 0 calc(20% - 20px); /* 5 per row */
+    max-width: 200px;
+    text-align: center;
+}
+
+/* Image Wrapper */
+.category-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1/1; /* Perfect square */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    background: #fff;
+}
+.category-image-wrapper:hover {
+    transform: scale(1.05);
+}
+
+/* Image */
+.category-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Category Name */
+.category-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-top: 8px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .category-item {
+        flex: 0 0 calc(40% - 10px); /* 2-3 per row on mobile */
+        max-width: 160px;
+    }
+    .category-name {
+        font-size: 0.9rem;
+    }
+}
+/* Category Slider */
+.category-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* IE & Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+.category-slider::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari */
+}
+
+
+/* Ensure images fill and remain proportionate */
+.hot-deal-card img,
+.product-card img,
+.category-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .hot-deal-card img,
+    .product-card img,
+    .category-card img {
+        height: 160px; /* smaller fixed height for mobile */
+    }
+}
+/* Floating Chat Button */
+.chat-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: #fff;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+.chat-btn:hover { background: #0056b3; }
+
+/* Chat Popup */
+.chat-popup {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    background: #fff;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.chat-header {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.chat-body {
+    height: 300px;
+    overflow-y: auto;
+    background: #f9f9f9;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 80%;
+    font-size: 0.9rem;
+}
+
+.support-message {
+    background: #e9ecef;
+    color: #333;
+}
+
+.user-message {
+    background: #007bff;
+    color: #fff;
+    margin-left: auto;
+    text-align: right;
+}
+
+.time {
+    display: block;
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.chat-footer input {
+    border-radius: 20px;
+}
+.chat-footer button {
+    border-radius: 20px;
+}

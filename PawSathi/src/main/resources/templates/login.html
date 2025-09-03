@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title}, ~{::script})}">
+
+<head>
+    <title>Login Page</title>
+</head>
+
+<body>
+    <div id="content">
+        <div class="container my-5 pt-5 ">
+        <div class="row justify-content-center align-items-center shadow-lg" style="min-height: 500px; border-radius: 10px;">
+            
+            <!-- Left Side Image -->
+            <div class="col-md-6 p-0 d-none d-md-block">
+                <img src="images/cat.png" alt="Login Image" class="img-fluid h-100 w-100" style="object-fit: cover; border-radius: 10px 0 0 10px;">
+            </div>
+
+            <!-- Right Side Login Form -->
+            <div class="col-md-6 bg-white  p-5">
+                <h2 class="mb-4 text-center">Login</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password">
+                    </div>
+
+                    <button type="submit" class="btn btn-dark w-100">Login</button>
+                    <p class="text-center mt-3">Don't have an account? <a href="#">Register</a></p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <script>
+        console.log("Home page");
+    </script>
+</body>
+
+</html>

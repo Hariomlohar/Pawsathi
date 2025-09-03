@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::#content},~{::title}, ~{::script})}">
+
+<head>
+    <title>Edit Product</title>
+</head>
+
+<body>
+    <div id="content">
+        <div class="container py-5 mt-5">
+            <h2 class="text-center mb-4">Edit Product</h2>
+
+            <!-- Success & Error Messages -->
+            <th:block th:if="${session.succMsg}">
+                <div class="alert alert-success p-2" role="alert">
+                    [[${session.succMsg}]]
+                </div>
+                <th:block th:text="${@commanServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
+            <th:block th:if="${session.errorMsg}">
+                <div class="alert alert-danger p-2" role="alert">
+                    [[${session.errorMsg}]]
+                </div>
+                <th:block th:text="${@commanServiceImpl.removeSessionMessage()}"></th:block>
+            </th:block>
+
+            <form action="/admin/updateProduct" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" th:value="${product.id}">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Product Name</label>
+                        <input name="name" type="text" class="form-control" th:value="${product.name}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Price (₹)</label>
+                        <input name="price" type="number" class="form-control" th:value="${product.price}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Offer (%)</label>
+                        <input name="offer" type="number" class="form-control" th:value="${product.offer}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Age Suitability</label>
+                        <input name="ageSuitability" type="text" class="form-control" th:value="${product.ageSuitability}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Available Stocks</label>
+                        <input name="stock" type="number" class="form-control" th:value="${product.stock}">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Category</label>
+                        <select name="category.id" class="form-select" required>
+                            <option disabled>Select Category</option>
+                            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"
+                                th:selected="${product.category != null and cat.id == product.category.id}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="3" th:text="${product.description}"></textarea>
+                </div>
+
+                <h5>Specifications</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Material</label>
+                        <input name="material" type="text" class="form-control" th:value="${product.material}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Color</label>
+                        <input name="color" type="text" class="form-control" th:value="${product.color}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Weight</label>
+                        <input name="weight" type="text" class="form-control" th:value="${product.weight}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Length</label>
+                        <input name="length" type="text" class="form-control" th:value="${product.length}">
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Product Image</label>
+                    <input name="file" class="form-control" type="file">
+                    <div th:if="${product.imageName}">
+                        <img th:src="@{'/uploads/product_img/' + ${product.imageName}}" class="mt-2" style="width: 100px;">
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3">
+                    <button type="submit" class="btn btn-success">Update Product</button>
+                    <a href="/admin/products" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>
